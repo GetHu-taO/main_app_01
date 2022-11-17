@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="contents.css">
+    <title>Document</title>
+</head>
+<body>
+    <p>ボタンを押すと５秒間の録画が行われます</p>
+    <br>
+    <div class="left">
+        <div id="startButton" class="button">Start Recording</div>
+        <h2>Preview</h2>
+        <video id="preview" width="160" height="120" autoplay muted></video>
+      </div>
+      <div class="right">
+        <div id="stopButton" class="button">Stop Recording</div>
+        <h2>Recording</h2>
+        <video id="recording" width="160" height="120" controls src="blob:https://yari-demos.prod,mdn.mozit.cloud/8e656c1b-aa24-4023-90b9-7419714b3a3f"></video>
+        <a id="downloadButton" class="button" href="blob:https://yari-demos.prod.mdn.mozit.cloud/8e656c1b-aa24-4023-90b9-7419714b3a3f" 
+        download="RecordedVideo.webm"> Download </a>
+      </div>
+    <div class="bottom">
+        <pre id="log">recording for 5 seconds…
+            Successfully recorded 347266 bytes of video/webm media.
+            </pre>
+    </div>
+    </div>
+    <script src="contents.js"></script>
+</body>
+</html>
