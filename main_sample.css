@@ -1,0 +1,35 @@
+header {
+     background-color: #dddddd;
+     height: 100px;
+    }
+    
+    .main {
+     background-color: lightblue;
+     height: 800px;
+    }
+    
+    footer {
+     background-color: #dddddd
+    }
+.header-list a {
+         list-style: none;
+         float: left;
+        }
+.header-logo {
+             color: green;
+             font-size: 30px;
+             float: left;
+            }
+            .header-list a {
+                list-style: none;
+                float: left;
+                padding: 35px 50px;
+                text-decoration: none
+                }
+                
+                .header-logo {
+                 color: green;
+                 font-size: 30px;
+                 float: left;
+                 padding: 30px 40px;
+                }
