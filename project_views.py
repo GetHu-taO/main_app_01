@@ -1,0 +1,34 @@
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+
+def download_view(request):
+    if request.method == 'POST':
+        # Get the video file from the request
+        video_file = request.FILES['video_file']
+
+        # Specify the download destination on the server
+        download_destination = '/path/to/download/destination/on/server'
+
+        # Save the video file to the specified download destination
+        default_storage.save(download_destination, ContentFile(video_file.read()))
+
+        # Return a response indicating that the file was successfully saved on the server
+        return HttpResponse('File saved successfully on the server')
+  
+def home(request):
+    return render(request, "home.html")
+#  ホーム画面
+def content(request):
+    return render(request, "content.html")
+ # カメラ 
+def remoteinterviewguide(request):
+    return render(request, "remoteinterviewguide.html")
+# リモート面接ガイド
+def recordedfile(request):
+    return render(request, "recordedfile.html")
+# 録画ファイル
+def treatment(request):
+    return render(request, "treatment.html")
+# 使い方    
