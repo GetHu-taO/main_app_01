@@ -1,0 +1,196 @@
+p.title {
+    position: absolute;
+    top: 25px;
+    text-indent: 180px;
+    /*右に微調節*/
+}
+
+.btn4 {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #5c76cc;
+    width: 10em;
+    height: 2em;
+    position: absolute;
+    top: -800px;
+    right: 0px;
+    bottom: 0px;
+    left: 1700px;
+    margin: auto;
+    border: none;
+    background: transparent;
+}
+
+.btn5 {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #5c76cc;
+    width: 10em;
+    height: 2em;
+    position: absolute;
+    top: -800px;
+    right: 0px;
+    bottom: 0px;
+    left: 1450px;
+    margin: auto;
+    border: none;
+    background: transparent;
+}
+
+.section0 {
+    background-color: #ffffff;
+    height: 100px;
+}
+
+.section8 {
+    background-color: #748bbb;
+    height: 1px;
+}
+
+.section1 {
+    background-color: #ffffff;
+    height: 174px;
+}
+
+.section3 {
+    background-color: #cbf1fa;
+    height: 8px;
+}
+
+.section4 {
+    background-color: #ffffff;
+    height: 8px;
+}
+
+.section2 {
+    background-color: #cbf1fa;
+    height: 660px;
+}
+
+.section7 {
+    background-color: #abbad1;
+    width: 2px;
+    height: 570px;
+    position: absolute;
+    top: 300px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    margin: auto;
+}
+
+.section9 {
+    background-color: #abbad1;
+    width: 500px;
+    height: 2px;
+    position: absolute;
+    top: 160px;
+    right: 1100px;
+    bottom: 0px;
+    left: 0px;
+    margin: auto;
+}
+
+.section10 {
+    background-color: #abbad1;
+    width: 500px;
+    height: 2px;
+    position: absolute;
+    top: 630px;
+    right: 1100px;
+    bottom: 0px;
+    left: 0px;
+    margin: auto;
+}
+
+.check {
+    color: #4b5c75;
+    position: absolute;
+    top: 300px;
+    right: 0px;
+    bottom: 0px;
+    left: 200px;
+    margin: auto;
+}
+
+.hyouka {
+    color: #4b5c75;
+}
+
+.goukei {
+    position: absolute;
+    top: 580px;
+    right: 0px;
+    bottom: 0px;
+    left: 560px;
+    margin: auto;
+}
+
+input.text {
+    text-align: right;
+    width: 2em;
+    height: 2em;
+    font-size: 180%;
+    background-color: transparent;
+    border: none;
+}
+
+.box {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #4b5c75;
+    width: 12em;
+    height: 3em;
+    position: absolute;
+    top: 0px;
+    right: 425px;
+    bottom: 550px;
+    left: 0px;
+    margin: auto;
+    border: none;
+    background: transparent;
+}
+
+.oum {
+    width: 10em;
+    height: auto;
+    position: absolute;
+    top: 0px;
+    right: 1650px;
+    bottom: 820px;
+    left: 0px;
+    margin: auto;
+}
+
+.list {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 850px;
+    margin: auto;
+}
+
+.tasseido {
+    width: 3em;
+    height: auto;
+}
+
+table {
+    text-align: left;
+    vertical-align: top;
+    table-layout: fixed;
+    max-height: 30;
+    max-width: 30;
+    font-size: 80%;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 350px;
+    left: 200px;
+    margin: auto;
+    overflow: scroll;
+}
