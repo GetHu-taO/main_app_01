@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/content.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>ボタンを押すと５秒間の録画が行われます</p>
+    <br>
+    <div class="left">
+        <div id="startButton" class="button">Start Recording</div>
+        <h2>Preview</h2>
+        <video id="preview" width="160" height="120" autoplay muted></video>
+    </div>
+    <div class="right">
+        <div id="stopButton" class="button">Stop Recording</div>
+        <h2>Recording</h2>
+        <video id="recording" width="160" height="120" controls
+            src="blob:https://yari-demos.prod,mdn.mozit.cloud/8e656c1b-aa24-4023-90b9-7419714b3a3f"></video>
+        <a id="downloadButton" class="button"
+            href="blob:https://yari-demos.prod.mdn.mozit.cloud/8e656c1b-aa24-4023-90b9-7419714b3a3f"
+            download="RecordedVideo.webm"> Download </a>
+    </div>
+    <div class="bottom">
+        <pre id="log">recording for 5 seconds…
+            Successfully recorded 347266 bytes of video/webm media.
+            </pre>
+    </div>
+    </div>
+    <script>let preview = document.getElementById("preview");
+        let recording = document.getElementById("recording");
+        let startButton = document.getElementById("startButton");
+        let stopButton = document.getElementById("stopButton");
+        let downloadButton = document.getElementById("downloadButton");
+        let logElement = document.getElementById("log");
+        // Set the target URL for the POST request to the Django server
+        let targetUrl = '/download/destination/on/server';
+
+        // Create a FormData object to hold the video file
+        let formData = new FormData();
+
+        // Add the recorded video file to the FormData object
+        formData.append('video_file', recordedBlob, 'RecordedVideo.webm');
+
+        // Send the POST request to the Django server with the FormData object as the request body
+        fetch(targetUrl, {
+            method: 'POST',
+            body: formData
+        });
+
+        let recordingTimeMS = 5000;
+        function log(msg) {
+            logElement.innerHTML += `${msg}\n`;
+        }
+        function wait(delayInMS) {
+            return new Promise((resolve) => setTimeout(resolve, delayInMS));
+        }
+        function startRecording(stream, lengthInMS) {
+            let recorder = new MediaRecorder(stream);
+            let data = [];
+
+            recorder.ondataavailable = (event) => data.push(event.data);
+            recorder.start();
+            log(`${recorder.state} for ${lengthInMS / 1000} seconds…`);
+
+            let stopped = new Promise((resolve, reject) => {
+                recorder.onstop = resolve;
+                recorder.onerror = (event) => reject(event.name);
+            });
+
+            let recorded = wait(lengthInMS).then(
+                () => {
+                    if (recorder.state === "recording") {
+                        recorder.stop();
+                    }
+                },
+            );
+
+            return Promise.all([
+                stopped,
+                recorded
+            ])
+                .then(() => data);
+        }
+        function stop(stream) {
+            stream.getTracks().forEach((track) => track.stop());
+        }
+        startButton.addEventListener("click", () => {
+            navigator.mediaDevices.getUserMedia({
+                video: true,
+                audio: true
+            }).then((stream) => {
+                preview.srcObject = stream;
+                downloadButton.href = stream;
+                preview.captureStream = preview.captureStream || preview.mozCaptureStream;
+                return new Promise((resolve) => preview.onplaying = resolve);
+            }).then(() => startRecording(preview.captureStream(), recordingTimeMS))
+                .then((recordedChunks) => {
+                    let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
+                    recording.src = URL.createObjectURL(recordedBlob);
+                    downloadButton.href = recording.src;
+                    downloadButton.download = "RecordedVideo.webm";
+
+                    log(`Successfully recorded ${recordedBlob.size} bytes of ${recordedBlob.type} media.`);
+                })
+                .catch((error) => {
+                    if (error.name === "NotFoundError") {
+                        log("Camera or microphone not found. Can't record.");
+                    } else {
+                        log(error);
+                    }
+                });
+        }, false);
+        stopButton.addEventListener("click", () => {
+            stop(preview.srcObject);
+        }, false);</script>
+</body>
+
+</html>
