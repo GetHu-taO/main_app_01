@@ -1,0 +1,144 @@
+p.title {
+    position: absolute;
+    top: 25px;
+    text-indent: 180px;
+    /*右に微調節*/
+}
+
+.btn1 {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #5c76cc;
+    width: 30em;
+    height: 4.5em;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 110px;
+    left: 1000px;
+    margin: auto;
+    border: 2px dotted #5c76cc;
+}
+
+.btn2 {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #5c76cc;
+    width: 30em;
+    height: 4.5em;
+    position: absolute;
+    top: 90px;
+    right: 0px;
+    bottom: 0px;
+    left: 1000px;
+    margin: auto;
+    border: 2px dotted #5c76cc;
+}
+
+.btn3 {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #5c76cc;
+    width: 30em;
+    height: 4.5em;
+    position: absolute;
+    top: 290px;
+    right: 0px;
+    bottom: 0px;
+    left: 1000px;
+    margin: auto;
+    border: 2px dotted #5c76cc;
+}
+
+.btn4 {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #5c76cc;
+    width: 10em;
+    height: 2em;
+    position: absolute;
+    top: -800px;
+    right: 0px;
+    bottom: 0px;
+    left: 1700px;
+    margin: auto;
+    border: none;
+    background: transparent;
+}
+
+.section0 {
+    background-color: #ffffff;
+    height: 100px;
+}
+
+.section8 {
+    background-color: #748bbb;
+    height: 1px;
+}
+
+.section1 {
+    background-color: #ffffff;
+    height: 210px;
+}
+
+.section2 {
+    background-color: #cbf1fa;
+    height: 15px;
+}
+
+.section3 {
+    background-color: #ffffff;
+    height: 15px;
+}
+
+.section4 {
+    background-color: #cbf1fa;
+    height: 380px;
+}
+
+.section5 {
+    background-color: #ffffff;
+    height: 15px;
+}
+
+.section6 {
+    background-color: #cbf1fa;
+    height: 15px;
+}
+
+.section7 {
+    background-color: #ffffff;
+    height: 200px;
+}
+
+.oum {
+    animation: poyopoyo 2s ease-out infinite;
+    opacity: 1;
+    width: 10em;
+    height: auto;
+    position: absolute;
+    top: 0px;
+    right: 1650px;
+    bottom: 820px;
+    left: 0px;
+    margin: auto;
+}
+
+@keyframes poyopoyo {
+
+    0%,
+    40%,
+    60%,
+    80% {
+        transform: scale(1.0);
+    }
+
+    50%,
+    70% {
+        transform: scale(0.95);
+    }
+}
