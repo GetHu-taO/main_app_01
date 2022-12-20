@@ -1,0 +1,149 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/recordedfile.css' %}">
+
+<body>
+    <section class="section0"></section>
+    <section class="section8"></section>
+    <section class="section1"></section>
+    <section class="section3"></section>
+    <section class="section4"></section>
+    <section class="section2"></section>
+    <section class="section7"></section>
+    <section class="section9"></section>
+    <section class="section10"></section>
+    <img src="{% static 'images/oum.png' %}" class="oum" width="10%">
+    <p class="title"><b>
+            <font size="9" face="メイリオ">OUM</font>
+            <font size="6" face="メイリオ">～オンラインで受かる<font color="red">面接</font>～</font>
+        </b></p>
+    <form action="{% url 'treatment' %}">
+        <button onmouseover="this.style.color='#b0c4de'" onmouseout="this.style.color='#5c76cc'" class="btn4"
+            onclick="tukaikata()">
+            <font size="4" face="メイリオ">使い方を見る</font>
+        </button>
+    </form>
+    <form action="{% url 'home' %}">
+        <button onmouseover="this.style.color='#b0c4de'" onmouseout="this.style.color='#5c76cc'" class="btn5"
+            onclick="home()">
+            <font size="4" face="メイリオ">Home</font>
+        </button>
+    </form>
+    <div class="check">
+        <font size="5" face="メイリオ">
+            <font class="hyouka" size="6" face="メイリオ"> 自己評価チェックシート</font>
+            <form name="myform">
+                <table cellpadding="1" cellspacing="0" border="0">
+                    <b>
+                        <p>＜話し方＞
+                    </b>
+                    <br><input type="checkbox" onclick="keisan()" name="check1">声で明るくハキハキと話せている
+                    <br><input type="checkbox" onclick="keisan()" name="check2">結論から話し、簡潔に分かりやすく話せている
+                    <br><input type="checkbox" onclick="keisan()" name="check3">きちんと敬語を話せている
+                    <br><input type="checkbox" onclick="keisan()" name="check4">おおよそ１分間の間に話せている
+                    <br><b>
+                        <p>＜態度＞
+                    </b>
+                    <br><input type="checkbox" onclick="keisan()" name="check5">質問の際にあいずちが出来ている
+                    <br><input type="checkbox" onclick="keisan()" name="check6">話す際に身振り手振りが出来ている
+                    <br><input type="checkbox" onclick="keisan()" name="check7">姿勢がまっすぐになっている
+                    <br><input type="checkbox" onclick="keisan()" name="check8">カメラを見ている
+                    <br><input type="checkbox" onclick="keisan()" name="check9">笑顔で話せている
+                    <br><b>
+                        <p>＜その他＞
+                    </b>
+                    <br><input type="checkbox" onclick="keisan()" name="check10">ハウリングやエコーが起こっていない
+                    <br><input type="checkbox" onclick="keisan()" name="check11">スーツをきちんと着用している
+                    <div class="goukei">達成度<input class="text" type="text" name="total" value="0">%</div>
+                    <input onmouseover="this.style.color='#b0c4de'" onmouseout="this.style.color='#4b5c75'" class="box"
+                        type="button" value="全てのチェックを外す" onClick="checkre()">
+        </font>
+    </div>
+    </table>
+    </form>
+
+    <div class="list">
+        <p>チェックリストログ</p>
+        <div class="kotei">
+            <input id="date" type="date" />
+            <input id="tasseido" class="tasseido" type="number" max="100" min="0" placeholder="達成度" />
+            <input id="komento" type="text" placeholder="一言コメント（反省点など）" />
+            <button id="hozon">保存</button>
+        </div>
+    </div>
+
+    </html>
+
+    <script>
+
+        const table = document.querySelector('table');
+        const date = document.querySelector('input[type="date"]');
+        const tasseido = document.getElementById('tasseido');
+        const komento = document.getElementById('komento');
+        const hozon = document.getElementById('hozon');
+
+        const item = {};
+
+        hozon.addEventListener('click', () => {
+            if (date.value != '') {
+                item.date = date.value;
+            } else {
+                const date = new Date(); // 本日の日付情報を取得
+                item.date = date.toLocaleDateString();
+            }
+            if (tasseido.value != '') {
+                item.tasseido = '　' + tasseido.value + '％';
+            } else {
+                window.alert('自己評価チェックシートの達成度を入力してください');
+                return;
+            }
+
+            item.komento = '　' + komento.value;
+
+            console.log(item);
+
+            date.value = '';
+            tasseido.value = '';
+            komento.value = '';
+
+            const tr = document.createElement('tr');
+
+            for (const prop in item) {
+                const td = document.createElement('td');
+                td.textContent = item[prop];
+                tr.appendChild(td);
+            }
+
+            table.append(tr);
+
+        });
+
+        function home() {
+
+            location.replace("./home.html");
+
+        }
+        function tukaikata() {
+
+            location.replace("./tukaikata.html");
+
+        }
+
+        plice = new Array();
+        plice[0] = 9.09; plice[1] = 9.09; plice[2] = 9.09; plice[3] = 9.09; plice[4] = 9.09; plice[5] = 9.09;
+        plice[6] = 9.09; plice[7] = 9.09; plice[8] = 9.09; plice[9] = 9.09; plice[10] = 9.10;
+        function keisan() {
+            goukei = 0;
+            for (i = 0; i <= 10; i++) {
+                if (document.myform.elements[i].checked == true) {
+                    goukei = goukei + plice[i];
+                }
+            }
+            document.myform.total.value = goukei;
+        }
+
+        function checkre() {
+            for (i = 1; i <= 11; i++) document.myform.elements["check" + i].checked = false;
+            document.myform.total.value = 0;
+        }
+
+    </script>
