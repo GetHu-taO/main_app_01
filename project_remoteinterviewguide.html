@@ -1,0 +1,31 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/remoteinterviewguide.css' %}">
+
+<body>
+    <section class="section0"></section>
+    <section class="section8"></section>
+    <section class="section1"></section>
+    <section class="section3"></section>
+    <section class="section4"></section>
+    <section class="section2"></section>
+    <img src="{% static 'images/oum.png' %}" class="oum" width="10%">
+    <p class="title"><b>
+            <font size="9" face="メイリオ">OUM</font>
+            <font size="6" face="メイリオ">～オンラインで受かる<font color="red">面接</font>～</font>
+        </b></p>
+    <form action="{% url 'treatment' %}">
+        <button onmouseover="this.style.color='#b0c4de'" onmouseout="this.style.color='#5c76cc'" class="btn4"
+            onclick="tukaikata()">
+            <font size="4" face="メイリオ">使い方を見る</font>
+        </button>
+    </form>
+    <form action="{% url 'home' %}">
+        <button onmouseover="this.style.color='#b0c4de'" onmouseout="this.style.color='#5c76cc'" class="btn5"
+            onclick="home()">
+            <font size="4" face="メイリオ">Home</font>
+        </button>
+    </form>
+    <img class="guide1" src="{% static 'images/gaido1.png' %}" /><img class="guide2"
+        src="{% static 'images/gaido2.png' %}" />
+
+    </html>
