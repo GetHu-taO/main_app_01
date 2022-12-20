@@ -1,0 +1,55 @@
+{% load static %}
+<!-- ホーム画面 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OUM～オンラインで受かる面接～</title>
+    <!-- <link rel="icon" href="favicon.ico"> -->
+    <link rel="stylesheet" href="{% static 'styles/home.css' %}">
+</head>
+
+<body>
+    <section class="section0"></section>
+    <section class="section8"></section>
+    <section class="section1"></section>
+    <section class="section2"></section>
+    <section class="section3"></section>
+    <section class="section4"></section>
+    <section class="section5"></section>
+    <section class="section6"></section>
+    <section class="section7"></section>
+    <img src="{% static 'images/oum.png' %}" class="oum" width="10%">
+    <p class="title"><b>
+            <font size="9" face="メイリオ">OUM</font>
+            <font size="6" face="メイリオ">～オンラインで受かる<font color="red">面接</font>～</font>
+        </b></p>
+    <form action="{% url 'remoteinterviewguide' %}">
+        <button style="background-color:#ffffff" onmouseover="this.style.background='#e6e6fa'"
+            onmouseout="this.style.background='#ffffff'" class="btn1" onclick="guide()">
+            <font size="5" face="メイリオ">オンライン面接対策ガイド</font>
+        </button>
+    </form>
+    <form action="{% url 'content' %}">
+        <button style="background-color:#ffffff" onmouseover="this.style.background='#e6e6fa'"
+            onmouseout="this.style.background='#ffffff'" class="btn2" onclick="rokuga()">
+            <font size="5" face="メイリオ">面接練習をする</font>
+        </button>
+    </form>
+    <form action="{% url 'recordedfile' %}">
+        <button style="background-color:#ffffff" onmouseover="this.style.background='#e6e6fa'"
+            onmouseout="this.style.background='#ffffff'" class="btn3" onclick="file()">
+            <font size="5" face="メイリオ">面接練習を振り返る</font>
+        </button>
+    </form>
+    <form action="{% url 'treatment' %}">
+        <button onmouseover="this.style.color='#b0c4de'" onmouseout="this.style.color='#5c76cc'" class="btn4"
+            onclick="tukaikata()">
+            <font size="4" face="メイリオ">使い方を見る</font>
+        </button>
+    </form>
+
+</html>
