@@ -1,0 +1,103 @@
+p.title {
+    position: absolute;
+    top: 25px;
+    text-indent: 180px;
+    /*右に微調節*/
+}
+
+.btn4 {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #5c76cc;
+    width: 10em;
+    height: 2em;
+    position: absolute;
+    top: -800px;
+    right: 0px;
+    bottom: 0px;
+    left: 1700px;
+    margin: auto;
+    border: none;
+    background: transparent;
+}
+
+.btn5 {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #5c76cc;
+    width: 10em;
+    height: 2em;
+    position: absolute;
+    top: -800px;
+    right: 0px;
+    bottom: 0px;
+    left: 1450px;
+    margin: auto;
+    border: none;
+    background: transparent;
+}
+
+.section0 {
+    background-color: #ffffff;
+    height: 100px;
+}
+
+.section8 {
+    background-color: #748bbb;
+    height: 1px;
+}
+
+.section1 {
+    background-color: #ffffff;
+    height: 174px;
+}
+
+.section3 {
+    background-color: #cbf1fa;
+    height: 8px;
+}
+
+.section4 {
+    background-color: #ffffff;
+    height: 8px;
+}
+
+.section2 {
+    background-color: #cbf1fa;
+    height: 660px;
+}
+
+.guide1 {
+    width: 45%;
+    height: auto;
+    position: absolute;
+    top: 300px;
+    right: 900px;
+    bottom: 0px;
+    left: 0px;
+    margin: auto;
+}
+
+.guide2 {
+    width: 45%;
+    height: auto;
+    position: absolute;
+    top: 300px;
+    right: 0px;
+    bottom: 0px;
+    left: 980px;
+    margin: auto;
+}
+
+.oum {
+    width: 10em;
+    height: auto;
+    position: absolute;
+    top: 0px;
+    right: 1650px;
+    bottom: 820px;
+    left: 0px;
+    margin: auto;
+}
