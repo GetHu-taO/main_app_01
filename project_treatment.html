@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OUMの使い方を見る</title>
+    <link rel="stylesheet" href="{% static 'styles/treatment.css' %}">
+    <!-- <link rel="icon" href="favicon.ico"> -->
+</head>
+
+<body>
+    <section class="section0"></section>
+    <section class="section8"></section>
+    <section class="section1"></section>
+    <section class="section3"></section>
+    <section class="section4"></section>
+    <section class="section2"></section>
+    <img src="{% static 'images/oum.png' %}" class="oum" width="10%">
+    <p class="title"><b>
+            <font size="9" face="メイリオ">OUM</font>
+            <font size="6" face="メイリオ">～オンラインで受かる<font color="red">面接</font>～</font>
+        </b></p>
+    <form action="{% url 'home' %}">
+        <button onmouseover="this.style.color='#b0c4de'" onmouseout="this.style.color='#5c76cc'" class="btn5"
+            onclick="home()">
+            <font size="4" face="メイリオ">Home</font>
+        </button>
+    </form>
+
+</html>
