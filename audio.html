@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="next-button">Next</button>
+    <p id="text">Hello!</p>
+    <audio id="audio" src=""></audio>
+    <script>
+        var index = 0;
+        var phrases = [
+            "Hello!",
+            "Hi there!",
+            "Welcome!",
+            "Greetings!",
+        ];
+        var audioFiles = [
+            "/static/sound/forte.mp3",
+            "/static/sound/reason.mp3",
+            "/static/sound/self.mp3",
+            "/static/sound/test.mp3",
+        ];
+        document.getElementById("next-button").onclick = function () {
+            index = (index + 1) % phrases.length;
+            document.getElementById("text").innerHTML = phrases[index];
+            document.getElementById("audio").src = audioFiles[index];
+            document.getElementById("audio").currentTime = 0;
+            document.getElementById("audio").play();
+        }
+    </script>
+</body>
+
+</html>
