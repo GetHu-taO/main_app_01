@@ -1,0 +1,101 @@
+{% load static %}
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <style>
+        /* .hidden {
+            display: none;
+        } */
+        .class1 {
+            position: absolute;
+            top: 30px;
+            left: 1100px;
+            height: 800px;
+        }
+
+        video {
+            position: relative;
+            margin-top: 2px;
+            border: 1px solid black;
+            top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="{% static 'img/wood.png' %}" class="class1">
+
+    <video id="video" width="800" height="700" autoplay></video><br>
+    <button id="startRecord" class="record">Start Recording</button>
+    <button id="stopRecord">Stop Recording</button>
+    <a id="downloadLink" download="video.mp4">Download Video</a>
+
+    <div class="alert alert-info text-center h1 fixed-bottom" role="alert">
+        <p id="text">Hello!</p>
+        <audio id="audio" src=""></audio>
+    </div>
+    <div class="col align-self-start">
+        <button type="button" class="btn btn-outline-secondary " id="next-button">Secondary</button>
+    </div>
+    <script type="text/javascript">
+        var video = document.querySelector("#video");
+        var startRecord = document.querySelector('#startRecord');
+        var stopRecord = document.querySelector('#stopRecord');
+        var downloadLink = document.querySelector('#downloadLink');
+
+        window.onload = async function () {
+            stopRecord.style.display = "none";
+
+            videoStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+            video.srcObject = videoStream;
+        }
+        startRecord.onclick = function () {
+            startRecord.style.display = "none";
+            stopRecord.style.display = "inline";
+
+            mediaRecorder = new MediaRecorder(videoStream);
+
+            let blob = [];
+            mediaRecorder.addEventListener('dataavailable', function (e) {
+                blob.push(e.data);
+            })
+
+            mediaRecorder.addEventListener('stop', function () {
+                var videoLocal = URL.createObjectURL(new Blob(blob));
+                downloadLink.href = videoLocal;
+            })
+            mediaRecorder.start();
+        }
+        stopRecord.onclick = function () {
+            mediaRecorder.stop();
+        }
+    </script>
+
+    <script>
+        var index = 0;
+        var phrases = [
+            "Hello!",
+            "Hi there!",
+            "Welcome!",
+            "Greetings!",
+        ];
+        var audioFiles = [
+            "/static/sound/forte.mp3",
+            "/static/sound/reason.mp3",
+            "/static/sound/self.mp3",
+            "/static/sound/tot.mp3",
+        ];
+        document.getElementById("next-button").onclick = function () {
+            index = (index + 1) % phrases.length;
+            document.getElementById("text").innerHTML = phrases[index];
+            document.getElementById("audio").src = audioFiles[index];
+            document.getElementById("audio").currentTime = 0;
+            document.getElementById("audio").play();
+        }
+    </script>
+</body>
+
+</html>
