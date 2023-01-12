@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        p {
+            position: absolute;
+            left: 150px;
+            width: 80%;
+            height: 100px;
+            top: 800px;
+            margin: 0 auto 16px;
+            background-color: #eee;
+            text-align: center;
+            font-size: 36px;
+            line-height: 100px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="message-1">2秒ごとに文字が変わります！</p>
+
+    <script>
+        const message1 = document.getElementById('message-1');
+        const audio = new Audio();
+        const messageSounds = {
+            'Good morning!': '/static/sound/forte.mp3',
+            'Hello!': '/static/sound/reason.mp3',
+            'Good evening!': '/static/sound/self.mp3',
+            'Good night!': '/static/sound/tot.mp3',
+        };
+
+        function playAudio() {
+            switch (messages[i]) {
+                case 'Good morning!':
+                    audio.src = '/static/sound/forte.mp3';
+                    break;
+                case 'Hello!':
+                    audio.src = '/static/sound/reason.mp3';
+                    break;
+                case 'Good evening!':
+                    audio.src = '/static/sound/self.mp3';
+                    break;
+                case 'Good night!':
+                    audio.src = '/static/sound/tot.mp3';
+                    break;
+            }
+            audio.play();
+        }
+        const messages = [
+            'Good morning!',
+            'Hello!',
+            'Good evening!',
+            'Good night!'
+        ];
+
+        let i = 0;
+
+        function showMessage_1() {
+            if (i === messages.length) {
+                i = 0;
+            }
+            message1.textContent = messages[i];
+            playAudio();
+            i++;
+        }
+
+        setInterval(showMessage_1, 5000);</script>
+</body>
+
+</html>
