@@ -1,0 +1,177 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'styles/content.css' %}">
+  <style>a.btn_30 {
+    display: flex;
+    vertical-align: middle;
+    text-decoration: none;
+    margin: auto;
+    width: 20em;
+    height: 4em;
+    color: #ccc;
+    cursor: pointer;
+    transition: all 0.85s cubic-bezier(.17,.67,.14,.93);
+    transform-style: preserve-3d;
+    transform-origin: 100% 50%;
+  }
+  a.btn_30:hover {
+    transform: rotateX(-90deg);
+  }
+  a.btn_30 .side {
+    box-sizing: border-box;
+    position: absolute;
+    display: inline-block;
+    width: 20em;
+    text-align: center;
+    padding: 1.2rem 4rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+  a.btn_30 .top {
+    background: #b4e12b;
+    color: #fff;
+    transform: rotateX(90deg) translate3d(0, 0, 2em);
+  }
+  a.btn_30 .front {
+    background: #27acd9;
+    color: #fff;
+    transform: translate3d(0, 0, 2em);
+  }
+  .example{
+    font-weight: bold;
+    cursor: pointer;
+    display: block;
+    width: 150px;
+    background: #27acd9;
+    color: #fff;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+}
+.example:active{
+    background: #b4e12b;
+    color: #FFF;
+}
+.example2{
+    font-weight: bold;
+    cursor: pointer;
+    display: block;
+    width: 150px;
+    background: #27acd9;
+    color: #fff;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    top: 30px;
+  }
+.example2:active{
+    background: #b4e12b;
+    color: #FFF;
+}</style>
+  <title>Document</title>
+</head>
+
+<body>
+  <br>
+  <div class="left">
+      <div id="startButton" class="example">Start Recording</div>
+      <video id="preview" width="750" height="650" autoplay muted></video>
+    </div>
+    <div class="right">
+      <div id="stopButton" class="example2">Stop Recording</div>
+      <video id="recording" width="160" height="120" controls src="blob:https://yari-demos.prod,mdn.mozit.cloud/8e656c1b-aa24-4023-90b9-7419714b3a3f"></video>
+      <a id="downloadButton" class="btn_30" href="blob:https://yari-demos.prod.mdn.mozit.cloud/8e656c1b-aa24-4023-90b9-7419714b3a3f" 
+      download="RecordedVideo.webm"> <span class="side top">ダウンロード</span>
+      <span class="side front">後で確認する</span>
+  
+  <div class="bottom">
+      <pre id="log">recording for 5 seconds…
+          Successfully recorded 347266 bytes of video/webm media.
+          </pre>
+  </div>
+  </div>
+  <script>let preview = document.getElementById("preview");
+    let recording = document.getElementById("recording");
+    let startButton = document.getElementById("startButton");
+    let stopButton = document.getElementById("stopButton");
+    let downloadButton = document.getElementById("downloadButton");
+    let logElement = document.getElementById("log");
+    
+    let recordingTimeMS = 5000;
+    function log(msg) {
+        logElement.innerHTML += `${msg}\n`;
+      }
+      function wait(delayInMS) {
+        return new Promise((resolve) => setTimeout(resolve, delayInMS));
+      }
+      function startRecording(stream, lengthInMS) {
+        let recorder = new MediaRecorder(stream);
+        let data = [];
+      
+        recorder.ondataavailable = (event) => data.push(event.data);
+        recorder.start();
+        log(`${recorder.state} for ${lengthInMS / 1000} seconds…`);
+      
+        let stopped = new Promise((resolve, reject) => {
+          recorder.onstop = resolve;
+          recorder.onerror = (event) => reject(event.name);
+        });
+      
+        let recorded = wait(lengthInMS).then(
+          () => {
+            if (recorder.state === "recording") {
+              recorder.stop();
+            }
+          },
+        );
+      
+        return Promise.all([
+          stopped,
+          recorded
+        ])
+        .then(() => data);
+      }
+      function stop(stream) {
+        stream.getTracks().forEach((track) => track.stop());
+      }
+      startButton.addEventListener("click", () => {
+        navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: true
+        }).then((stream) => {
+          preview.srcObject = stream;
+          downloadButton.href = stream;
+          preview.captureStream = preview.captureStream || preview.mozCaptureStream;
+          return new Promise((resolve) => preview.onplaying = resolve);
+        }).then(() => startRecording(preview.captureStream(), recordingTimeMS))
+        .then ((recordedChunks) => {
+          let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
+          recording.src = URL.createObjectURL(recordedBlob);
+          downloadButton.href = recording.src;
+          downloadButton.download = "RecordedVideo.webm";
+      
+          log(`Successfully recorded ${recordedBlob.size} bytes of ${recordedBlob.type} media.`);
+        })
+        .catch((error) => {
+          if (error.name === "NotFoundError") {
+            log("Camera or microphone not found. Can't record.");
+          } else {
+            log(error);
+          }
+        });
+      }, false);
+      stopButton.addEventListener("click", () => {
+        stop(preview.srcObject);
+      }, false);</script>
+</body>
+</html>
