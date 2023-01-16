@@ -1,0 +1,32 @@
+ <form>
+        <div class="multiselect">
+            <div class="selectBox" onclick="showCheckboxes()">
+                <select>
+                    <option>Select an option</option>
+                </select>
+                <div class="overSelect"></div>
+            </div>
+            <div id="checkboxes">
+                <label for="one">
+                    <input type="checkbox" id="one" />志望動機を教えてください</label>
+                <label for="two">
+                    <input type="checkbox" id="two" />自己紹介をしてください</label>
+                <label for="three">
+                    <input type="checkbox" id="three" />あなたの長所と短所はなんですか？</label>
+                <label for="three">
+                    <input type="checkbox" id="three" />学校時代一番頑張ったことはなんですか？</label>
+            </div>
+        </div>
+    </form>
+    <script>var expanded = false;
+
+        function showCheckboxes() {
+            var checkboxes = document.getElementById("checkboxes");
+            if (!expanded) {
+                checkboxes.style.display = "block";
+                expanded = true;
+            } else {
+                checkboxes.style.display = "none";
+                expanded = false;
+            }
+        }</script>
