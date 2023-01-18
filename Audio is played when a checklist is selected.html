@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .multiselect {
+            width: 200px;
+        }
+
+        .selectBox {
+            position: relative;
+        }
+
+        .selectBox select {
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .overSelect {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+        #checkboxes {
+            display: none;
+            border: 1px #dadada solid;
+        }
+
+        #checkboxes label {
+            display: block;
+        }
+
+        #checkboxes label:hover {
+            background-color: #1e90ff;
+        }
+    </style>
+
+<body>
+    <form>
+        <div class="multiselect">
+            <div class="selectBox" onclick="showCheckboxes()">
+                <select>
+                    <option>Select an option</option>
+                </select>
+                <div class="overSelect"></div>
+            </div>
+            <div id="checkboxes">
+                <label for="one">
+                    <input type="checkbox" id="one" value="First checkbox" onclick="updateSelected()" />First
+                    checkbox</label>
+                <label for="two">
+                    <input type="checkbox" id="two" value="Second checkbox" onclick="updateSelected()" />Second
+                    checkbox</label>
+                <label for="three">
+                    <input type="checkbox" id="three" value="Third checkbox" onclick="updateSelected()" />Third
+                    checkbox</label>
+            </div>
+        </div>
+    </form>
+    <p id="selected"></p>
+    <button onclick="displaySelected()">Display Selected</button>
+    <audio id="myAudio"></audio>
+    <script>
+        var audioFiles = {
+            "First checkbox": "/static/sound/forte.mp3",
+            "Second checkbox": "/static/sound/reason.mp3",
+            "Third checkbox": "/static/sound/tot.mp3"
+        };
+        var expanded = false;
+        var selected = [];
+        function showCheckboxes() {
+            var checkboxes = document.getElementById("checkboxes");
+            if (!expanded) {
+                checkboxes.style.display = "block";
+                expanded = true;
+            } else {
+                checkboxes.style.display = "none";
+                expanded = false;
+            }
+        }
+
+        function updateSelected() {
+            selected = [];
+            var checkboxes = document.querySelectorAll("#checkboxes input[type='checkbox']");
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    selected.push(checkboxes[i].value);
+                }
+            }
+        }
+
+        function displaySelected() {
+            document.getElementById("selected").innerHTML = "Selected: " + selected.join(', ');
+            var audio = document.getElementById("myAudio");
+            audio.src = audioFiles[selected[0]];
+            audio.play();
+        }
+
+    </script>
+
+</html>
