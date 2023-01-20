@@ -1,0 +1,358 @@
+<!-- {% load static %} -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="{% static 'styles/content.css' %}"> -->
+    <style>
+        body {
+            background-color: rgb(67, 67, 67);
+        }
+
+        .section8 {
+            background-color: #748bbb;
+            height: 1px;
+        }
+
+        .section0 {
+            background-color: #ffffff;
+            height: 85px;
+        }
+
+
+        .guide1 {
+            width: 45%;
+            height: auto;
+            position: absolute;
+            top: 300px;
+            right: 900px;
+            bottom: 0px;
+            left: 0px;
+            margin: auto;
+        }
+
+        .guide2 {
+            width: 45%;
+            height: auto;
+            position: absolute;
+            top: 300px;
+            right: 0px;
+            bottom: 0px;
+            left: 980px;
+            margin: auto;
+        }
+
+        .oum {
+            width: 10em;
+            height: auto;
+            position: absolute;
+            top: -23px;
+            right: 1650px;
+            bottom: 820px;
+            left: -4px;
+            margin: auto;
+        }
+
+        p.title {
+            position: absolute;
+            top: 5px;
+            text-indent: 180px;
+            /*右に微調節*/
+        }
+
+        video {
+            background-color: rgb(222, 222, 222);
+            position: sticky;
+            margin-top: -45px;
+            border: 1px solid rgb(232, 232, 232);
+        }
+
+        a.btn_30 {
+            position: relative;
+            top: -7em;
+            left: -28.8%;
+            display: flex;
+            vertical-align: middle;
+            text-decoration: none;
+            margin: auto;
+            width: 20em;
+            height: 4em;
+            color: #ccc;
+            cursor: pointer;
+            transition: all 0.85s cubic-bezier(.17, .67, .14, .93);
+            transform-style: preserve-3d;
+            transform-origin: 100% 50%;
+        }
+
+        /* a.btn_30:hover {
+            transform: rotateX(-90deg);
+        } */
+
+        a.btn_30 .side {
+            top: 41px;
+            left: -140px;
+            box-sizing: border-box;
+            position: absolute;
+            display: inline-block;
+            width: 20em;
+            height: 3.7em;
+            text-align: center;
+            padding: 1.3rem 4rem;
+            font-weight: bold;
+            letter-spacing: 12px;
+        }
+
+        a.btn_30 .top {
+            background: #b4e12b;
+            color: #fff;
+            transform: rotateX(90deg) translate3d(0, 0, 2em);
+        }
+
+        a.btn_30 .front {
+            background: #27acd9;
+            color: #fff;
+            transform: translate3d(0, 0, 2em);
+        }
+
+        .example {
+            position: relative;
+            left: 37%;
+            top: 643.4px;
+            font-weight: bold;
+            cursor: pointer;
+            display: block;
+            width: 170px;
+            background: #27acd9;
+            color: #fff;
+            padding: 17px;
+            text-align: center;
+            letter-spacing: 11px;
+        }
+
+        .example:active {
+            background: #b4e12b;
+            color: #FFF;
+        }
+
+        .example2 {
+            position: relative;
+            top: 11px;
+            left: 460px;
+            font-weight: bold;
+            cursor: pointer;
+            display: block;
+            width: 170px;
+            background: #27acd9;
+            color: #fff;
+            padding: 17px;
+            text-align: center;
+            text-decoration: none;
+            letter-spacing: 12px;
+        }
+
+        .example2:active {
+            background: #b4e12b;
+            color: #FFF;
+        }
+
+        .videosize {
+            top: 30%;
+            left: 87px;
+        }
+
+        .class1 {
+            position: absolute;
+            top: 14.4%;
+            left: 1030px;
+            height: 613px;
+        }
+
+        .textbox {
+            position: absolute;
+            left: 1000px;
+            width: 45%;
+            height: 100px;
+            top: 760px;
+            margin: 0 auto 16px;
+            background-color: #eee;
+            text-align: center;
+            font-size: 36px;
+            /* line-height: 150px; */
+        }
+
+        .multiselect {
+            width: 200px;
+            top: 50em;
+            position: absolute;
+        }
+
+        .selectBox {
+            position: relative;
+        }
+
+        .selectBox select {
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .overSelect {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+        #checkboxes {
+            display: none;
+            border: 1px #dadada solid;
+        }
+
+        #checkboxes label {
+            display: block;
+        }
+
+        #checkboxes label:hover {
+            background-color: #1e90ff;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="{% static 'img/oum.png' %}" class="oum" width="10%">
+    <img src="{% static 'img/gitproject.gif' %}" class="class1">
+    <section class="section0"></section>
+    <section class="section8"></section>
+    <section class="section1"></section>
+    <p class="title"><b>
+            <font size="9" face="メイリオ">OUM</font>
+            <font size="6" face="メイリオ">～オンラインで受かる<font color="red">面接</font>～</font>
+        </b></p>
+    <div class="textbox">
+        <p id="text">こんにちは</p>
+        <audio id="audio" src=""></audio>
+    </div>
+    <br>
+    <div class="left">
+        <div id="startButton" class="example">
+            <a id="next-button">録画開始</a>
+        </div>
+        <video class="videosize" id="preview" width="850" height="610" autoplay muted></video>
+    </div>
+    <div class="right">
+        <div id="stopButton" class="example2">録画停止</div>
+        <video id="recording" width="1" height="1" controls
+            src="blob:https://yari-demos.prod,mdn.mozit.cloud/8e656c1b-aa24-4023-90b9-7419714b3a3f"></video>
+        <a id="downloadButton" class="btn_30"
+            href="blob:https://yari-demos.prod.mdn.mozit.cloud/8e656c1b-aa24-4023-90b9-7419714b3a3f"
+            download="VideoView.mp4"> <span class="side top">ダウンロード</span>
+            <span class="side front">後で確認する</span>
+
+            <div class="bottom">
+                <pre id="log">recording for 5 seconds…
+          Successfully recorded 347266 bytes of video/webm media.
+          </pre>
+            </div>
+    </div>
+    <script>let preview = document.getElementById("preview");
+        let recording = document.getElementById("recording");
+        let startButton = document.getElementById("startButton");
+        let stopButton = document.getElementById("stopButton");
+        let downloadButton = document.getElementById("downloadButton");
+        let logElement = document.getElementById("log");
+
+        let recordingTimeMS = 5000;
+        function log(msg) {
+            logElement.innerHTML += `${msg}\n`;
+        }
+        function wait(delayInMS) {
+            return new Promise((resolve) => setTimeout(resolve, delayInMS));
+        }
+        function startRecording(stream, lengthInMS) {
+            let recorder = new MediaRecorder(stream);
+            let data = [];
+
+            recorder.ondataavailable = (event) => data.push(event.data);
+            recorder.start();
+            log(`${recorder.state} for ${lengthInMS / 1000} seconds…`);
+
+            let stopped = new Promise((resolve, reject) => {
+                recorder.onstop = resolve;
+                recorder.onerror = (event) => reject(event.name);
+            });
+
+            let recorded = wait(lengthInMS).then(
+                () => {
+                    if (recorder.state === "recording") {
+                        recorder.stop();
+                    }
+                },
+            );
+
+            return Promise.all([
+                stopped,
+                recorded
+            ])
+                .then(() => data);
+        }
+        function stop(stream) {
+            stream.getTracks().forEach((track) => track.stop());
+        }
+        startButton.addEventListener("click", () => {
+            navigator.mediaDevices.getUserMedia({
+                video: true,
+                audio: true
+            }).then((stream) => {
+                preview.srcObject = stream;
+                downloadButton.href = stream;
+                preview.captureStream = preview.captureStream || preview.mozCaptureStream;
+                return new Promise((resolve) => preview.onplaying = resolve);
+            }).then(() => startRecording(preview.captureStream(), recordingTimeMS))
+                .then((recordedChunks) => {
+                    let recordedBlob = new Blob(recordedChunks, { type: "video/mp4" });
+                    recording.src = URL.createObjectURL(recordedBlob);
+                    downloadButton.href = recording.src;
+                    downloadButton.download = "VideoView.mp4";
+
+                    log(`Successfully recorded ${recordedBlob.size} bytes of ${recordedBlob.type} media.`);
+                })
+                .catch((error) => {
+                    if (error.name === "NotFoundError") {
+                        log("Camera or microphone not found. Can't record.");
+                    } else {
+                        log(error);
+                    }
+                });
+        }, false);
+        stopButton.addEventListener("click", () => {
+            stop(preview.srcObject);
+        }, false);
+    </script>
+    <!-- <script>
+        var index = 0;
+        var phrases = [
+            "あなたの強みを教えてください。",
+            "弊社の志望理由を教えてください。",
+            "簡単に自己紹介をお願いいたします。",
+            "あなたの長所と短所を教えてください。",
+        ];
+        var audioFiles = [
+            "/static/sound/forte.mp3",
+            "/static/sound/reason.mp3",
+            "/static/sound/self.mp3",
+            "/static/sound/tot.mp3",
+        ];
+        document.getElementById("next-button").onclick = function () {
+            index = (index + 1) % phrases.length;
+            document.getElementById("text").innerHTML = phrases[index];
+            document.getElementById("audio").src = audioFiles[index];
+            document.getElementById("audio").currentTime = 0;
+            document.getElementById("audio").play();
+        }</script> -->
+</body>
+
+</html>
