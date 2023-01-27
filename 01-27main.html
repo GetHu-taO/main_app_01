@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        p {
+            position: absolute;
+            left: 150px;
+            width: 80%;
+            height: 100px;
+            top: 800px;
+            margin: 0 auto 16px;
+            background-color: #eee;
+            text-align: center;
+            font-size: 36px;
+            line-height: 100px;
+        }
+
+        .section8 {
+            background-color: #748bbb;
+            height: 1px;
+        }
+
+        .section0 {
+            background-color: #ffffff;
+            height: 85px;
+        }
+
+
+        .guide1 {
+            width: 45%;
+            height: auto;
+            position: absolute;
+            top: 300px;
+            right: 900px;
+            bottom: 0px;
+            left: 0px;
+            margin: auto;
+        }
+
+        .guide2 {
+            width: 45%;
+            height: auto;
+            position: absolute;
+            top: 300px;
+            right: 0px;
+            bottom: 0px;
+            left: 980px;
+            margin: auto;
+        }
+
+        .oum {
+            width: 10em;
+            height: auto;
+            position: absolute;
+            top: -23px;
+            right: 1650px;
+            bottom: 820px;
+            left: -4px;
+            margin: auto;
+        }
+
+        p.title {
+            position: absolute;
+            top: 5px;
+            text-indent: 180px;
+            /*右に微調節*/
+        }
+
+        .class1 {
+            position: absolute;
+            top: 14.4%;
+            left: 1030px;
+            height: 613px;
+        }
+
+        #stop-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <button onmouseover="this.style.color='#b0c4de'" onmouseout="this.style.color='#5c76cc'" class="btn5"
+        onclick="home()">
+        <font size="4" face="メイリオ">Home</font>
+    </button>
+    <img src="{% static 'img/oum.png' %}" class="oum" width="10%">
+    <img src="{% static 'img/gitproject.gif' %}" class="class1">
+    <section class="section0"></section>
+    <section class="section8"></section>
+    <section class="section1"></section>
+    <p class="title"><b>
+            <font size="9" face="メイリオ">OUM</font>
+            <font size="6" face="メイリオ">～オンラインで受かる<font color="red">面接</font>～</font>
+        </b></p>
+    <p id="message-1">2秒ごとに文字が変わります！</p>
+
+    <button id="start-button" onclick="startInterval()">Start</button>
+    <button id="stop-button" onclick="stopInterval()">Stop</button>
+    <script>
+        let intervalId;
+        const message1 = document.getElementById('message-1');
+        const audio = new Audio();
+        const messageSounds = {
+            'Good morning!': "/static/sound/forte.mp3",
+            'Hello!': "/static/sound/reason.mp3",
+            'Good evening!': '/static/sound/self.mp3',
+            'Good night!': '/static/sound/tot.mp3',
+        };
+
+        function playAudio() {
+            if (audio.paused === false) {
+                audio.pause();
+            }
+            switch (messages[i]) {
+                case 'あなたの強みを教えてください。':
+                    audio.src = "/static/sound/forte.mp3";
+                    break;
+                case '弊社の志望理由を教えてください。':
+                    audio.src = "/static/sound/reason.mp3";
+                    break;
+                case '簡単に自己紹介をお願いいたします。':
+                    audio.src = "/static/sound/self.mp3";
+                    break;
+                case 'あなたの長所と短所を教えてください。':
+                    audio.src = "/static/sound/tot.mp3";
+                    break;
+            }
+            audio.play();
+        }
+        const messages = [
+            'あなたの強みを教えてください。',
+            '弊社の志望理由を教えてください。',
+            '簡単に自己紹介をお願いいたします。',
+            'あなたの長所と短所を教えてください。'
+        ];
+
+        let i = 0;
+
+        function showMessage_1() {
+            if (i === messages.length) {
+                i = 0;
+            }
+            message1.textContent = messages[i];
+            playAudio();
+            i++;
+        }
+
+        function startInterval() {
+            intervalId = setInterval(showMessage_1, 5000);
+        }
+        function stopInterval() {
+            clearInterval(intervalId);
+        }</script>
+</body>
+
+</html>
